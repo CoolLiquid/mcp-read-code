@@ -1,0 +1,5 @@
+.git
+.github
+benchmark
+*.md
+!README.md

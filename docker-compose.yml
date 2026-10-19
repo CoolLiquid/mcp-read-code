@@ -1,0 +1,14 @@
+services:
+  gitlab-code-reader-mcp:
+    build: .
+    container_name: gitlab-code-reader-mcp
+    restart: unless-stopped
+    ports:
+      - "10.217.102.192:8088:8088"
+    # Host resolves gitlab.dev.qitegroup.com via /etc/hosts; Docker DNS cannot see that.
+    extra_hosts:
+      - "gitlab.dev.qitegroup.com:10.217.111.3"
+    environment:
+      MCP_TRANSPORT: http
+      LISTEN_ADDR: ":8088"
+      GITLAB_URL: ${GITLAB_URL:-http://10.217.102.20}
